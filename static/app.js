@@ -809,6 +809,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
   $("#login-form")?.addEventListener("submit", signIn);
 
+  $("#add-top")?.addEventListener("click", () => {
+    $("#student-form")?.reset();
+    $("#student-dialog")?.showModal();
+  });
+
+  $("#student-form")?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const student = {
+      student_code: String(formData.get("student_code") || "").trim(),
+      name: String(formData.get("name") || "").trim(),
+      department: String(formData.get("department") || "").trim(),
+      year: Number(formData.get("year")),
+      attendance: Number(formData.get("attendance")),
+      marks: Number(formData.get("marks")),
+      assignments: Number(formData.get("assignments"))
+    };
+
+    try {
+      await api("/api/students", {
+        method: "POST",
+        body: JSON.stringify(student)
+      });
+
+      $("#student-dialog")?.close();
+      form.reset();
+
+      showNotice("Student added successfully.");
+
+      await loadStudents($("#search")?.value || "");
+      await loadDashboard();
+    } catch (error) {
+      showNotice(error.message, true);
+    }
+  });
+
+
   document.querySelectorAll("[data-view]").forEach((button) => {
     button.addEventListener("click", () => switchView(button.dataset.view));
   });
