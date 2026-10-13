@@ -1,0 +1,13 @@
+﻿.venv/
+**/.venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+edusuccess.db
+*.db-journal
+.DS_Store
+
+app/main.py.before-deployment
+static/*.before-*

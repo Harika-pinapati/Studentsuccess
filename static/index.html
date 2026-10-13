@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a33"><title>EduSuccess AI | Student Success Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <section id="login-screen" class="login-screen">
+    <div class="login-art"><div class="login-brand"><span class="brand-mark">E</span><span>EduSuccess<span class="brand-ai"> AI</span></span></div><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-copy"><span class="eyebrow light">STUDENT SUCCESS PLATFORM</span><h1>Make every<br>learning journey<br><em>count.</em></h1><p>One connected space for academic progress, attendance, assignments and early support.</p><div class="art-stats"><div><strong>360°</strong><span>student view</span></div><div><strong>AI</strong><span>early insights</span></div><div><strong>1</strong><span>shared purpose</span></div></div></div><div class="art-footer">BUILT FOR LEARNING · POWERED BY INSIGHT</div></div>
+    <div class="login-side"><div class="mobile-brand"><span class="brand-mark">E</span><strong>EduSuccess AI</strong></div><div class="login-card"><div class="eyebrow">WELCOME BACK</div><h2>Sign in to your workspace</h2><p class="login-subtitle">Choose your portal to continue.</p>
+      <div class="role-switch" role="tablist"><button type="button" class="role-tab active" data-role="student"><span class="role-icon">♙</span><span><strong>Student</strong><small>My learning</small></span></button><button type="button" class="role-tab" data-role="teacher"><span class="role-icon">▤</span><span><strong>Teacher</strong><small>Faculty workspace</small></span></button></div>
+      <form id="login-form"><input type="hidden" name="role" value="student"><label id="username-label" for="login-username">Student ID</label><div class="input-wrap"><span>⌕</span><input id="login-username" name="username" autocomplete="username" placeholder="e.g. ES001" required></div><label for="login-password">Password</label><div class="input-wrap"><span>⌑</span><input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required><button type="button" id="toggle-password" class="password-toggle" aria-label="Show password">Show</button></div><div id="login-error" class="login-error hidden"></div><button class="btn btn-primary login-submit" type="submit"><span>Sign in securely</span><span>→</span></button></form>
+      <div class="demo-credentials"><div class="demo-heading"><span class="pulse-dot"></span> DEMO ACCESS</div><div class="demo-credential-row"><span>Student</span><code>ES001</code><code>Student@123</code><button type="button" data-demo="student">Use</button></div><div class="demo-credential-row"><span>Teacher</span><code>teacher@edusuccess.local</code><code>Teacher@123</code><button type="button" data-demo="teacher">Use</button></div></div><p class="privacy-note"><span>⌑</span> Demo data is stored locally in your SQLite database.</p></div><div class="login-bottom">© 2026 EduSuccess AI <span>·</span> Learn better, together.</div></div>
+  </section>
+  <div id="app-shell" class="app-shell hidden">
+    <aside class="sidebar"><div class="brand"><span class="brand-mark">E</span><div><strong>EduSuccess<span class="brand-ai"> AI</span></strong><small>STUDENT SUCCESS</small></div></div><div class="nav-label">WORKSPACE</div>
+      <button class="nav-item active" data-view="dashboard"><span>◫</span> Overview</button><button class="nav-item teacher-only" data-view="students"><span>♙</span> Students</button><button class="nav-item" data-view="attendance"><span>◷</span> Attendance</button><button class="nav-item" data-view="results"><span>▤</span> Results</button><button class="nav-item" data-view="assignments"><span>▧</span> Assignments</button><button class="nav-item teacher-only" data-view="insights"><span>✧</span> AI insights</button><button class="nav-item student-only" data-view="skills"><span>✦</span> Skill development</button>
+      <div class="sidebar-bottom"><div class="sidebar-avatar" id="sidebar-avatar">T</div><div class="sidebar-user"><strong id="sidebar-name">Workspace</strong><small id="sidebar-role">Teacher account</small></div><span class="online-dot"></span></div><button id="logout-btn" class="logout-btn"><span>↪</span> Sign out</button>
+    </aside>
+    <main class="main"><header class="topbar"><div><div class="eyebrow" id="top-eyebrow">STUDENT SUCCESS CENTER</div><h1 id="page-title">Overview</h1><p id="page-subtitle">A clear view of progress, engagement and next steps.</p></div><div class="top-actions"><div class="date-chip"><span>◷</span><span id="today-label">Today</span></div><button class="btn btn-outline" id="download-report">↓ Download report</button><button class="btn btn-primary teacher-only" id="add-top">＋ Add student</button></div></header><div id="notice" class="notice hidden"></div>
+      <section id="dashboard-view" class="view"><div class="welcome"><div class="welcome-content"><div class="eyebrow light" id="welcome-eyebrow">ACADEMIC OVERVIEW</div><h2 id="welcome-title">Every student deserves a chance to succeed.</h2><p id="welcome-copy">Understand progress, spot support needs, and turn insights into action.</p><div class="welcome-foot"><span class="welcome-check">✓</span> Your learning community, at a glance</div></div><div class="welcome-graphic"><div class="graphic-ring ring-a"></div><div class="graphic-ring ring-b"></div><div class="graphic-core">✦</div><span class="float-chip chip-one">↗ Progress</span><span class="float-chip chip-two">✓ On track</span></div></div>
+        <div class="metric-grid"><article class="metric-card"><div class="metric-top"><span id="metric-one-label">Total students</span><span class="metric-icon purple">♙</span></div><div class="metric-value" id="total-students">—</div><div class="metric-foot" id="metric-one-foot">Learners in your workspace</div><div class="metric-spark spark-purple"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article><article class="metric-card"><div class="metric-top"><span>Average marks</span><span class="metric-icon blue">▤</span></div><div class="metric-value"><span id="average-marks">—</span><small>/ 100</small></div><div class="metric-foot">Academic performance indicator</div><div class="metric-spark spark-blue"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article><article class="metric-card"><div class="metric-top"><span>Average attendance</span><span class="metric-icon green">◷</span></div><div class="metric-value"><span id="average-attendance">—</span><small>%</small></div><div class="metric-foot">Classroom engagement indicator</div><div class="metric-spark spark-green"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article><article class="metric-card"><div class="metric-top"><span id="risk-metric-label">Need a check-in</span><span class="metric-icon orange">✧</span></div><div class="metric-value" id="support-flags">—</div><div class="metric-foot" id="risk-metric-foot">Students to review with care</div><div class="metric-spark spark-orange"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article></div>
+        <div class="content-grid"><article class="panel"><div class="panel-heading"><div><h3 id="performance-title">Department performance</h3><p id="performance-subtitle">Average marks across departments</p></div><span class="panel-tag">LIVE DATA</span></div><div id="department-chart" class="bar-chart"></div></article><article class="panel"><div class="panel-heading"><div><h3 id="support-title">Support overview</h3><p>Early indicators for human review</p></div><span class="mini-icon">✧</span></div><div id="risk-chart" class="risk-list"></div><div class="disclaimer">AI predictions are indicative only. They are not diagnoses or final academic decisions.</div></article></div>
+        <article class="panel table-panel"><div class="panel-heading"><div><h3 id="recent-title">Recently added students</h3><p id="recent-subtitle">A quick look at your learning community</p></div><button class="btn btn-quiet teacher-only" data-go="students">View all →</button></div><div class="table-wrap"><table><thead id="recent-head"><tr><th>STUDENT</th><th>DEPARTMENT</th><th>ATTENDANCE</th><th>MARKS</th><th>SUPPORT LEVEL</th><th></th></tr></thead><tbody id="recent-table"></tbody></table></div></article></section>
+      <section id="students-view" class="view hidden"><div class="section-intro"><div><h2>Student records</h2><p>Manage profiles and review learning indicators.</p></div><a class="btn btn-outline" href="/api/export.csv" id="export-link">↓ Export CSV</a></div><div class="toolbar"><input id="search" type="search" placeholder="Search name, ID, department…"><span id="student-count" class="muted"></span></div><article class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>DEPARTMENT / YEAR</th><th>ATTENDANCE</th><th>MARKS</th><th>ASSIGNMENTS</th><th>SUPPORT LEVEL</th><th>ACTION</th></tr></thead><tbody id="students-table"></tbody></table></div></article><div class="small-note">Use fictional data for demos. AI flags are prompts for supportive conversations, not labels.</div></section>
+      <section id="attendance-view" class="view hidden"><div class="section-intro"><div><h2>Attendance tracking</h2><p id="attendance-description">Record class participation and spot patterns early.</p></div><button class="btn btn-primary teacher-only" id="mark-attendance-btn">＋ Mark attendance</button></div><div class="mini-summary-grid"><div class="mini-summary"><span>Attendance records</span><strong id="attendance-total">—</strong></div><div class="mini-summary"><span>Present / late</span><strong id="attendance-present">—</strong></div><div class="mini-summary"><span>Absences</span><strong id="attendance-absent">—</strong></div></div><article class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>SUBJECT</th><th>DATE</th><th>STATUS</th></tr></thead><tbody id="attendance-table"></tbody></table></div></article></section>
+      <section id="results-view" class="view hidden"><div class="section-intro"><div><h2>Results & assessments</h2><p>Keep academic outcomes clear, timely and accessible.</p></div><button class="btn btn-primary teacher-only" id="add-result-btn">＋ Add result</button></div><article class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>SUBJECT</th><th>ASSESSMENT</th><th>SCORE</th><th>RESULT</th><th>DATE PUBLISHED</th></tr></thead><tbody id="results-table"></tbody></table></div></article></section>
+      <section id="assignments-view" class="view hidden"><div class="section-intro"><div><h2>Assignments</h2><p id="assignments-description">Stay aligned on briefs, deadlines and submissions.</p></div><button class="btn btn-primary teacher-only" id="add-assignment-btn">＋ Create assignment</button></div><div id="assignment-grid" class="assignment-grid"></div></section>
+      <section id="skills-view" class="view hidden student-only">
+  <div class="section-intro">
+    <div>
+      <h2>Skill development</h2>
+      <p>Track what you have learned and what you want to learn next.</p>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <article class="panel">
+      <div class="panel-heading">
+        <div>
+          <h3>Skills I Have Learned</h3>
+          <p>Check each skill when you feel confident using it.</p>
+        </div>
+        <span class="mini-icon">✓</span>
+      </div>
+      <div class="progress-line">
+        <div><span>Learning progress</span><strong id="learned-percent">0%</strong></div>
+        <div class="progress-track green-track"><i id="learned-progress" style="width:0%"></i></div>
+      </div>
+      <div class="skill-list">
+        <label class="skill-row"><input type="checkbox" data-skill="Python programming"><span><strong>Python programming</strong><small>Variables, loops, functions and small projects</small></span></label>
+        <label class="skill-row"><input type="checkbox" data-skill="Web development"><span><strong>Web development</strong><small>HTML, CSS, JavaScript and responsive pages</small></span></label>
+        <label class="skill-row"><input type="checkbox" data-skill="Databases and SQL"><span><strong>Databases and SQL</strong><small>Tables, queries and data modelling</small></span></label>
+        <label class="skill-row"><input type="checkbox" data-skill="Problem solving"><span><strong>Problem solving</strong><small>Practise coding problems and explain your approach</small></span></label>
+        <label class="skill-row"><input type="checkbox" data-skill="Communication and presentation"><span><strong>Communication and presentation</strong><small>Present a topic clearly in 3–5 minutes</small></span></label>
+        <label class="skill-row"><input type="checkbox" data-skill="Teamwork"><span><strong>Teamwork</strong><small>Contribute to a shared mini-project</small></span></label>
+        <label class="skill-row"><input type="checkbox" data-skill="Critical thinking"><span><strong>Critical thinking</strong><small>Compare solutions and explain your choices</small></span></label>
+        <label class="skill-row"><input type="checkbox" data-skill="Interview preparation"><span><strong>Interview preparation</strong><small>Practise introductions and project explanations</small></span></label>
+      </div>
+    </article>
+
+    <article class="panel">
+      <div class="panel-heading">
+        <div>
+          <h3>Skills I Want to Learn Next</h3>
+          <p>Select the skills you want to focus on next.</p>
+        </div>
+        <span class="mini-icon">↗</span>
+      </div>
+      <div class="progress-line">
+        <div><span>Goals selected</span><strong id="next-percent">0%</strong></div>
+        <div class="progress-track blue-track"><i id="next-progress" style="width:0%"></i></div>
+      </div>
+      <div class="skill-list">
+        <label class="skill-row"><input type="checkbox" data-next-skill="Data structures and algorithms"><span><strong>Data structures and algorithms</strong><small>Practise arrays, lists, sorting and searching</small></span></label>
+        <label class="skill-row"><input type="checkbox" data-next-skill="Full-stack development"><span><strong>Full-stack development</strong><small>Build a website with a backend and database</small></span></label>
+        <label class="skill-row"><input type="checkbox" data-next-skill="Machine learning"><span><strong>Machine learning</strong><small>Explore datasets and build a simple model</small></span></label>
+        <label class="skill-row"><input type="checkbox" data-next-skill="Cloud computing"><span><strong>Cloud computing</strong><small>Learn cloud basics and deployment</small></span></label>
+        <label class="skill-row"><input type="checkbox" data-next-skill="Cybersecurity"><span><strong>Cybersecurity</strong><small>Learn safe computing and security fundamentals</small></span></label>
+        <label class="skill-row"><input type="checkbox" data-next-skill="Public speaking"><span><strong>Public speaking</strong><small>Practise delivering a short presentation</small></span></label>
+        <label class="skill-row"><input type="checkbox" data-next-skill="Resume and portfolio"><span><strong>Resume and portfolio</strong><small>Prepare a resume and showcase your projects</small></span></label>
+        <label class="skill-row"><input type="checkbox" data-next-skill="Interview practice"><span><strong>Interview practice</strong><small>Practise technical and behavioural questions</small></span></label>
+      </div>
+    </article>
+  </div>
+
+  <article class="panel skill-plan" id="weekly-plan">
+  <h3>Your weekly plan</h3>
+  <p>Choose a learning goal, schedule your study days, and tick off each day when you finish.</p>
+
+  <label for="weekly-goal"><strong>Learning goal</strong></label>
+  <select id="weekly-goal">
+    <option value="Python programming">Python programming</option>
+    <option value="Web development">Web development</option>
+    <option value="Databases and SQL">Databases and SQL</option>
+    <option value="Problem solving">Problem solving</option>
+    <option value="Data structures and algorithms">Data structures and algorithms</option>
+    <option value="Full-stack development">Full-stack development</option>
+    <option value="Machine learning">Machine learning</option>
+    <option value="Cloud computing">Cloud computing</option>
+    <option value="Cybersecurity">Cybersecurity</option>
+    <option value="Public speaking">Public speaking</option>
+    <option value="Resume and portfolio">Resume and portfolio</option>
+    <option value="Interview practice">Interview practice</option>
+  </select>
+
+  <label for="weekly-minutes"><strong>Daily study target</strong></label>
+  <select id="weekly-minutes">
+    <option value="15">15 minutes</option>
+    <option value="30" selected>30 minutes</option>
+    <option value="45">45 minutes</option>
+    <option value="60">60 minutes</option>
+  </select>
+
+  <h4>Choose your study days</h4>
+  <div class="skill-list">
+    <label class="skill-row"><input type="checkbox" data-plan-day="Monday"><span><strong>Monday</strong><small>Plan to study</small></span></label>
+    <label class="skill-row"><input type="checkbox" data-plan-day="Tuesday"><span><strong>Tuesday</strong><small>Plan to study</small></span></label>
+    <label class="skill-row"><input type="checkbox" data-plan-day="Wednesday"><span><strong>Wednesday</strong><small>Plan to study</small></span></label>
+    <label class="skill-row"><input type="checkbox" data-plan-day="Thursday"><span><strong>Thursday</strong><small>Plan to study</small></span></label>
+    <label class="skill-row"><input type="checkbox" data-plan-day="Friday"><span><strong>Friday</strong><small>Plan to study</small></span></label>
+    <label class="skill-row"><input type="checkbox" data-plan-day="Saturday"><span><strong>Saturday</strong><small>Plan to study</small></span></label>
+    <label class="skill-row"><input type="checkbox" data-plan-day="Sunday"><span><strong>Sunday</strong><small>Plan to study</small></span></label>
+  </div>
+
+  <h4>Mark completed study days</h4>
+  <div class="skill-list">
+    <label class="skill-row"><input type="checkbox" data-done-day="Monday"><span><strong>Monday completed</strong></span></label>
+    <label class="skill-row"><input type="checkbox" data-done-day="Tuesday"><span><strong>Tuesday completed</strong></span></label>
+    <label class="skill-row"><input type="checkbox" data-done-day="Wednesday"><span><strong>Wednesday completed</strong></span></label>
+    <label class="skill-row"><input type="checkbox" data-done-day="Thursday"><span><strong>Thursday completed</strong></span></label>
+    <label class="skill-row"><input type="checkbox" data-done-day="Friday"><span><strong>Friday completed</strong></span></label>
+    <label class="skill-row"><input type="checkbox" data-done-day="Saturday"><span><strong>Saturday completed</strong></span></label>
+    <label class="skill-row"><input type="checkbox" data-done-day="Sunday"><span><strong>Sunday completed</strong></span></label>
+  </div>
+
+  <div class="progress-line">
+    <div><span>Weekly completion</span><strong id="weekly-percent">0%</strong></div>
+    <div class="progress-track green-track"><i id="weekly-progress" style="width:0%"></i></div>
+    <p id="weekly-summary" aria-live="polite">0 of 0 planned study days completed.</p>
+  </div>
+  <div class="small-note">Your plan is saved in this browser on this device. Only mark a day complete after you finish your study session.</div>
+</article>
+</section>
+
+<section id="insights-view" class="view hidden"><div class="section-intro"><div><h2>AI insights</h2><p>Explainable indicators and recommended support actions.</p></div></div><div class="insight-banner"><div class="insight-symbol">✧</div><div><h3>Support students, don't label students.</h3><p>The local ML model highlights patterns for human review. It uses synthetic training data and has not been validated on real student outcomes.</p></div></div><div id="insight-cards" class="insight-grid"></div></section>
+      <footer>EduSuccess AI · Student success workspace · Local ML + SQLite</footer>
+    </main>
+  </div>
+  <dialog id="student-dialog"><form id="student-form"><div class="dialog-head"><div><div class="eyebrow">STUDENT PROFILE</div><h2>Add student</h2></div><button type="button" class="close-btn" id="close-dialog">×</button></div><div class="form-grid"><label>Student ID<input name="student_code" required minlength="2" placeholder="e.g. ES011"></label><label>Full name<input name="name" required minlength="2" placeholder="Student name"></label><label>Department<select name="department"><option>CSE</option><option>AIML</option><option>ECE</option><option>EEE</option><option>IT</option><option>Mechanical</option><option>Civil</option></select></label><label>Year<select name="year"><option value="1">Year 1</option><option value="2">Year 2</option><option value="3" selected>Year 3</option><option value="4">Year 4</option></select></label><label>Attendance (%)<input name="attendance" type="number" min="0" max="100" required value="80"></label><label>Marks (%)<input name="marks" type="number" min="0" max="100" required value="70"></label><label class="full-width">Assignments completed (%)<input name="assignments" type="number" min="0" max="100" required value="80"></label></div><p class="form-hint">A student login is created automatically. Initial password: <strong>Student@123</strong>.</p><div class="dialog-actions"><button type="button" class="btn btn-outline" id="cancel-dialog">Cancel</button><button type="submit" class="btn btn-primary">Save student</button></div></form></dialog>
+  <dialog id="attendance-dialog"><form id="attendance-form"><div class="dialog-head"><div><div class="eyebrow">CLASSROOM</div><h2>Mark attendance</h2></div><button type="button" class="close-btn" data-close="attendance-dialog">×</button></div><div class="form-grid"><label>Student<select name="student_id" id="attendance-student" required></select></label><label>Subject<input name="subject" required value="Programming Fundamentals"></label><label>Date<input name="attendance_date" type="date" required></label><label>Status<select name="status"><option value="present">Present</option><option value="absent">Absent</option><option value="late">Late</option></select></label></div><div class="dialog-actions"><button type="button" class="btn btn-outline" data-close="attendance-dialog">Cancel</button><button type="submit" class="btn btn-primary">Save attendance</button></div></form></dialog>
+  <dialog id="result-dialog"><form id="result-form"><div class="dialog-head"><div><div class="eyebrow">ACADEMIC RECORD</div><h2>Add result</h2></div><button type="button" class="close-btn" data-close="result-dialog">×</button></div><div class="form-grid"><label>Student<select name="student_id" id="result-student" required></select></label><label>Subject<input name="subject" required placeholder="Data Structures"></label><label>Assessment name<input name="exam_name" required placeholder="Internal Assessment 2"></label><label>Marks obtained<input name="marks_obtained" type="number" min="0" step="0.5" required></label><label class="full-width">Maximum marks<input name="max_marks" type="number" min="1" step="0.5" value="100" required></label></div><div class="dialog-actions"><button type="button" class="btn btn-outline" data-close="result-dialog">Cancel</button><button type="submit" class="btn btn-primary">Publish result</button></div></form></dialog>
+  <dialog id="assignment-dialog"><form id="assignment-form"><div class="dialog-head"><div><div class="eyebrow">LEARNING TASK</div><h2>Create assignment</h2></div><button type="button" class="close-btn" data-close="assignment-dialog">×</button></div><div class="form-grid"><label class="full-width">Title<input name="title" required placeholder="Build a mini project"></label><label>Subject<input name="subject" required placeholder="Programming Fundamentals"></label><label>Due date<input name="due_date" type="date" required></label><label class="full-width">Instructions<textarea name="description" rows="4" placeholder="Describe deliverables and submission expectations"></textarea></label></div><div class="dialog-actions"><button type="button" class="btn btn-outline" data-close="assignment-dialog">Cancel</button><button type="submit" class="btn btn-primary">Publish assignment</button></div></form></dialog>
+  <dialog id="submit-dialog"><form id="submit-form"><div class="dialog-head"><div><div class="eyebrow">YOUR WORK</div><h2 id="submit-title">Submit assignment</h2></div><button type="button" class="close-btn" data-close="submit-dialog">×</button></div><input type="hidden" name="assignment_id"><label class="submission-label">Submission notes<textarea name="submission_text" rows="6" required placeholder="Describe your work or paste your submission text…"></textarea></label><div class="dialog-actions"><button type="button" class="btn btn-outline" data-close="submit-dialog">Cancel</button><button type="submit" class="btn btn-primary">Submit work</button></div></form></dialog>
+  <dialog id="detail-dialog"><div id="detail-content"></div><div class="dialog-actions"><button class="btn btn-primary" id="close-detail">Done</button></div></dialog>
+  <script src="/static/app.js"></script>
+</body></html>
